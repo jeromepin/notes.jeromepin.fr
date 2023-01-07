@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+Bienvenue ! 🙂
+
+Je note ici tout ce que j'apprends dans divers domaines à la façon d'un <i>Jardin Numérique</i> (cf. <a
+    href="https://joelhooks.com/digital-garden/">Digital
+    Garden</a>) afin de compléter ma mémoire clairement volatile.<br /><br />
+
+
+Il ne s'agit pas d'un blog, ni d'articles précis et détaillés. Leur contenu peut même être faux ou incomplet.
+Ainsi ces pages sont plus destinées à moi-même qu'au public même si l'envie de partager me pousse à rendre ce contenu
+disponible.<br /><br />
+
+Seule la recherche et les tags permettent de naviguer entre les pages.<br /><br />
+
+{#
+{% set taxonomy = get_taxonomy(kind="tags") %}
+
+<ul>
+    {% for item in taxonomy.items %}
+    {% set url = get_taxonomy_url(kind=taxonomy.kind.name, name=item.name) %}
+    <li class="pill"><a href="{{url}}">{{ item.name }}</a></li>
+    {% endfor %}
+    <li class="pill"><a href="/tags">...</a></li>
+</ul>
+#}
+
+
+{% endblock content %}

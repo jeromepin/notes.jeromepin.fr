@@ -55,13 +55,23 @@
 
     <div class="post-footer">
         {% block page_footer %}
-        {% if page.backlinks | length > 0 %}
+
+        {% if page.extra.sources | length > 0 %}
+        <h3>Sources et références</h3>
+        <ul>
+            {% for url in page.extra.sources %}
+            <li><a href="{{ url }}">{{ url }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if "backlinks" in page and page.backlinks | length > 0 %}
         <h3>Backlinks</h3>
         {% for page in page.backlinks %}
         <a href="{{ page.permalink }}" title="{{ page.title }}">{{ page.title }}</a>
         {% endfor %}
-
         {% endif %}
+
         {% endblock page_footer %}
 
     </div>

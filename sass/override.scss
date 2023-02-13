@@ -89,6 +89,20 @@ a {
                 font-size: 14px;
             }
         }
+
+        blockquote {
+            box-shadow: none;
+        }
+
+        .footnote-definition {
+            padding-left: 0;
+            font-size: 12px;
+            margin-bottom: 1em;
+
+            &:first-of-type {
+                border-top: none;
+            }
+        }
     }
 
     .post-footer {
@@ -97,6 +111,7 @@ a {
 
         li {
             margin-bottom: 1em;
+            font-size: 12px;
         }
     }
 }

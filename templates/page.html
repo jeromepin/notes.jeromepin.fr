@@ -57,7 +57,7 @@
         {% block page_footer %}
 
         {% if page.extra.sources | length > 0 %}
-        <h3>Sources et références</h3>
+        <h4>Sources et références</h4>
         <ul>
             {% for source in page.extra.sources %}
                 {% if source is string %}
@@ -70,7 +70,7 @@
         {% endif %}
 
         {% if "backlinks" in page and page.backlinks | length > 0 %}
-        <h3>Backlinks</h3>
+        <h4>Backlinks</h4>
         {% for page in page.backlinks %}
         <a href="{{ page.permalink }}" title="{{ page.title }}">{{ page.title }}</a>
         {% endfor %}

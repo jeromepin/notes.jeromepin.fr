@@ -38,6 +38,10 @@ a {
     }
 }
 
+summary:hover {
+    cursor: pointer;
+}
+
 .post {
     padding-top: 0;
 
@@ -94,14 +98,8 @@ a {
             box-shadow: none;
         }
 
-        .footnote-definition {
-            padding-left: 0;
-            font-size: 12px;
-            margin-bottom: 1em;
-
-            &:first-of-type {
-                border-top: none;
-            }
+        sup.footnote-reference {
+            margin-left: 0.3em;
         }
     }
 
@@ -109,9 +107,17 @@ a {
         border-top: none;
         margin-top: 4em;
 
-        li {
+        ul,
+        ol {
+            padding: 0;
+            margin: 0;
             margin-bottom: 1em;
-            font-size: 12px;
+            padding-left: 3em;
+
+            li {
+                margin-bottom: 1em;
+                font-size: 12px;
+            }
         }
     }
 }
@@ -154,5 +160,9 @@ footer {
             margin-left: 0.3em;
             margin-right: 0.3em;
         }
+    }
+
+    .report-error {
+        font-size: 12px;
     }
 }

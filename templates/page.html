@@ -56,17 +56,32 @@
     <div class="post-footer">
         {% block page_footer %}
 
+        {% if page.extra.footnotes | length > 0 %}
+            <details class="footnotes" open>
+                <summary class="footnotes-title">Références</summary>
+                <div class="footnotes-content">
+                    <ol class="footnotes-list">
+                    {%- for footnote in page.extra.footnotes -%}
+                        <li id="{{loop.index}}">{{ footnote[0]|safe }} <a class="footnote-backlink" href="#ref:{{loop.index}}">↩</a> <a class="footnote-source-link" href="{{ footnote[1] }}">Source</a></li>
+                    {%- endfor -%}
+                    </ol>
+                </div>
+            </details>
+        {% endif %}
+
         {% if page.extra.sources | length > 0 %}
-        <h4>Sources et références</h4>
-        <ul>
-            {% for source in page.extra.sources %}
-                {% if source is string %}
-            <li><a href="{{ source }}">{{ source }}</a></li>
-                {% else %}
-            <li><a href="{{ source[0] }}">{{ source[1] }}</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+        <details class="sources" open>
+            <summary class="sources-title">Sources</summary>
+            <ul>
+                {% for source in page.extra.sources %}
+                    {% if source is string %}
+                <li><a href="{{ source }}">{{ source }}</a></li>
+                    {% else %}
+                <li id="source-{{ source[0] | urlencode_strict }}"><a href="{{ source[0] }}">{{ source[1] }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </details>
         {% endif %}
 
         {% if "backlinks" in page and page.backlinks | length > 0 %}

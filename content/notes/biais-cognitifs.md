@@ -9,6 +9,7 @@ sources = [
     "http://www.psychomedia.qc.ca/psychologie/biais-cognitifs",
     "https://tcc.apprendre-la-psychologie.fr/biais-cognitifs.html",
 ]
+footnotes = []
 +++
 
 > Un biais cognitif est une déviation dans le traitement cognitif d'une information. Le terme biais fait référence à une déviation systématique de la pensée logique et rationnelle par rapport à la réalité.

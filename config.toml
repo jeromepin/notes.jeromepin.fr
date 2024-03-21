@@ -1,4 +1,4 @@
-title = "Jérôme Pin - Jardin Numérique"
+title = "Jérôme Pin - Digital Garden"
 
 # The URL the site will be built for
 base_url = "https://notes.jeromepin.fr"
@@ -10,6 +10,8 @@ compile_sass = true
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
+
+generate_feed = true
 
 theme = "even"
 
@@ -23,7 +25,9 @@ taxonomies = [
 highlight_code = true
 
 [extra]
-# Put all your custom variables here
+katex_enable = true
+katex_auto_render = true
+
 even_menu = [
     {name = "Home", url = "/"},
     # {name = "Search", url = "search"},

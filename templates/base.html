@@ -1,4 +1,5 @@
 {% import "post_macros.html" as post_macros %}
+{% import "macros.html" as macros %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,33 +84,60 @@
         </header>
 
         <div class="container">
+            <nav class="tree">
+                <ul>
+                    {{ macros::render_pages_tree(section=get_section(path="notes/_index.md"), level=0) }}
+                </ul>
+            </nav>
             <main id="main" class="main">
                 <div class="content" id="mobile-panel content">
                     {% block content %}
 
                     {% endblock content %}
                 </div>
+                {% block footer %}
+                <footer id="footer" class="footer">
+                    <div class="social-links">
+                        <a href="https://stackoverflow.com/users/5515387" title="stackoverflow"><i class="fa-brands fa-stack-overflow"></i></a>
+                        <a href="https://twitter.com/jerome_pin" title="twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://github.com/jeromepin" title="github"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://notes.jeromepin.fr/atom.xml" type="application/rss+xml" title="rss"><i class="fa-solid fa-rss"></i></a>
+                    </div>
+                    {#<div class="report-error">
+                        <p>
+                          Si vous trouvez une erreur, je serais ravi <a href="https://github.com/jeromepin/notes.jeromepin.fr/issues/new">de le savoir</a> !
+                        </p>
+                    </div>#}
+                </footer>
+                {% endblock footer %}
             </main>
 
-            {% block footer %}
-            <footer id="footer" class="footer">
-                <div class="social-links">
-                    <a href="https://stackoverflow.com/users/5515387" title="stackoverflow"><i class="fa-brands fa-stack-overflow"></i></a>
-                    <a href="https://twitter.com/jerome_pin" title="twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://github.com/jeromepin" title="github"><i class="fa-brands fa-github"></i></a>
-                    <!--<a href="https://notes.jeromepin.fr/index.xml" type="application/rss+xml" title="rss"><i class="fa-solid fa-rss"></i></a>-->
-                </div>
-                <div class="report-error">
-                    <p>
-                      Si vous trouvez une erreur, je serais ravi <a href="https://github.com/jeromepin/notes.jeromepin.fr/issues/new">de le savoir</a> !
-                    </p>
-                </div>
-            </footer>
-            {% endblock footer %}
         </div>
 
       {% block js_body %}
           <script type="text/javascript" src="{{ get_url(path="even.js", trailing_slash=false) }}" ></script>
+          <!-- From https://github.com/getzola/zola/issues/1285 -->
+          <script type="text/javascript">
+            window.addEventListener('load', function() {
+                for (const ref of document.getElementsByClassName('footnote-reference')) {
+                    const hash = ref.children[0].hash.substring(1);
+                    const refhash = 'ref:' + hash;
+                    ref.id = refhash;
+                }
+        
+                for (const footnote of document.getElementsByClassName('footnote-definition')) {
+                    const hash = footnote.id;
+                    const refhash = 'ref:' + hash;
+                    const backlink = document.createElement('a');
+                    backlink.href = '#' + refhash;
+                    backlink.className = 'footnote-backlink';
+                    backlink.innerText = '↩';
+                    const paras = footnote.children;
+                    const lastPara = paras[paras.length - 1];
+                    lastPara.appendChild(backlink);
+                }
+            });
+        </script>
       {% endblock js_body %}
     </body>
 

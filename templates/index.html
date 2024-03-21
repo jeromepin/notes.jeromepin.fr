@@ -2,30 +2,19 @@
 
 {% block content %}
 
-Bienvenue ! 🙂
+Welcome ! 🙂<br /><br />
 
-Je note ici tout ce que j'apprends dans divers domaines à la façon d'un <i>Jardin Numérique</i> (cf. <a
-    href="https://joelhooks.com/digital-garden/">Digital
-    Garden</a>) afin de compléter ma mémoire clairement volatile.<br /><br />
+I'm writing here everything I learn in various fields following the <a
+    href="https://joelhooks.com/digital-garden/">Digital Garden</a> concept.<br /><br />
 
+The content is mostly written for me as a mean to remember interesting things that I don't need on a day-to-day basis
+but still want to keep in close proximity.<br /><br />
 
-Il ne s'agit pas d'un blog, ni d'articles précis et détaillés. Leur contenu peut même être faux ou incomplet.
-Ainsi ces pages sont plus destinées à moi-même qu'au public même si l'envie de partager me pousse à rendre ce contenu
-disponible.<br /><br />
+This is not a blog, nor host very thorough articles. Content may be incomplete or even plain wrong.<br /><br />
 
-Seule la recherche et les tags permettent de naviguer entre les pages.<br /><br />
+I try to provide source or scientific publications whenever I can to guard against the propagation of false
+informations.<br /><br />
 
-{#
-{% set taxonomy = get_taxonomy(kind="tags") %}
-
-<ul>
-    {% for item in taxonomy.items %}
-    {% set url = get_taxonomy_url(kind=taxonomy.kind.name, name=item.name) %}
-    <li class="pill"><a href="{{url}}">{{ item.name }}</a></li>
-    {% endfor %}
-    <li class="pill"><a href="/tags">...</a></li>
-</ul>
-#}
-
+Finally, I sometimes write content in French, under the <a href="/tags/french/">french</a> tag.
 
 {% endblock content %}

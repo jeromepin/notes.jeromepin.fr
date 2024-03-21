@@ -9,10 +9,10 @@
     <header class="post-header">
         <h1 class="post-title">{{ page.title }}</h1>
         <div class="post-meta">
-            <span class="post-time">Published on {{ page.date | date(format="%a %d %b %Y") }}</span>
+            <span class="post-time">Date : {{ page.date | date(format="%Y-%m-%d", locale="fr_FR") }}</span>
             {% if page.taxonomies.tags %}
             <ul>
-                {% for tag in page.taxonomies.tags %}
+                {% for tag in page.taxonomies.tags | sort %}
                 <li class="pill"><a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">{{ tag }}</a></li>
                 {% endfor %}
             </ul>
@@ -55,13 +55,34 @@
 
     <div class="post-footer">
         {% block page_footer %}
-        {% if page.backlinks | length > 0 %}
-        <h3>Backlinks</h3>
+
+        {% if page.extra.sources | length > 0 or page.extra.footnotes | length > 0 %}
+        <details class="sources" open>
+            <summary class="sources-title">Footnotes & sources</summary>
+            <ol class="footnotes-list">
+                {%- for footnote in page.extra.footnotes -%}
+                    <li id="{{loop.index}}">{{ footnote[0]|safe }} <a class="footnote-backlink" href="#ref:{{loop.index}}">↩</a> <a class="footnote-source-link" href="{{ footnote[1] }}">Source</a></li>
+                {%- endfor -%}
+                </ol>
+            <ul>
+                {% for source in page.extra.sources %}
+                    {% if source is string %}
+                <li><a href="{{ source }}">{{ source }}</a></li>
+                    {% else %}
+                <li id="source-{{ source[0] | urlencode_strict }}"><a href="{{ source[0] }}">{{ source[1] }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </details>
+        {% endif %}
+
+        {% if "backlinks" in page and page.backlinks | length > 0 %}
+        <h4>Backlinks</h4>
         {% for page in page.backlinks %}
         <a href="{{ page.permalink }}" title="{{ page.title }}">{{ page.title }}</a>
         {% endfor %}
-
         {% endif %}
+
         {% endblock page_footer %}
 
     </div>
